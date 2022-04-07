@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { logout } from "containers/auth/saga";
+import { store } from "store";
 
 const service = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "",
@@ -32,8 +34,12 @@ service.interceptors.response.use(
 
     return response;
   },
-  function (error) {
+  function (error: AxiosError) {
     if (error.response) {
+      if (error.response?.status === 401) {
+        store.dispatch(logout());
+      }
+
       if (!isProd) {
         console.log("ERR Resp: ", error.response);
       }

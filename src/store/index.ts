@@ -1,17 +1,21 @@
 import {
-  configureStore,
-  ThunkAction,
   Action,
+  configureStore,
   getDefaultMiddleware,
+  ThunkAction,
 } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
+
+import authSlice from "./../containers/auth/authSlice";
 import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    auth: authSlice,
+  },
   middleware,
   devTools: process.env.NODE_ENV === "development",
 });
@@ -20,9 +24,3 @@ sagaMiddleware.run(rootSaga);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;

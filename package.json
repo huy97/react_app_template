@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.19.5",
+    "aws-amplify": "^4.3.19",
     "axios": "^0.26.1",
     "craco-less": "^2.0.0",
     "react": "^18.0.0",
