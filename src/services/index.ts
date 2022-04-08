@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
-import { logout } from "containers/auth/saga";
+import { setUserInfo } from "containers/Auth/authSlice";
+
 import { store } from "store";
 
 const service = axios.create({
@@ -12,7 +13,8 @@ const isProd = process.env.NODE_ENV !== "development";
 
 service.interceptors.request.use(
   function (config: any) {
-    const token = localStorage.getItem("token");
+    const token = store.getState().auth.user?.idToken;
+
     if (token) {
       config.headers.common["Authorization"] = `Bearer ${token}`;
     }
@@ -34,10 +36,10 @@ service.interceptors.response.use(
 
     return response;
   },
-  function (error: AxiosError) {
+  function (error) {
     if (error.response) {
       if (error.response?.status === 401) {
-        store.dispatch(logout());
+        store.dispatch(setUserInfo(null));
       }
 
       if (!isProd) {
