@@ -26,6 +26,7 @@ export const authSlice = createSlice({
 });
 
 export const logout = createAction("auth/logout");
+
 export const { setUserInfo } = authSlice.actions;
 
 export const selectUserSelector = (state: RootState) => state?.auth?.user;
