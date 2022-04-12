@@ -1,9 +1,10 @@
 import { notification } from "antd";
 import LoginForm from "components/Auth/LoginForm";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import aws from "services/aws";
+
 import { setUserInfo } from "./authSlice";
 
 function Login() {
