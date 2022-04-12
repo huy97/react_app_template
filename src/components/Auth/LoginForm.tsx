@@ -9,6 +9,7 @@ interface IProps {
 export default function LoginForm({ onFinish }: IProps) {
   return (
     <FormContainer>
+      <h1>B2B Admin Portal</h1>
       <FormContent>
         <Form
           layout="vertical"
@@ -19,7 +20,6 @@ export default function LoginForm({ onFinish }: IProps) {
           }}
         >
           <Form.Item
-            label="Username"
             name="username"
             rules={[
               {
@@ -28,10 +28,9 @@ export default function LoginForm({ onFinish }: IProps) {
               },
             ]}
           >
-            <Input />
+            <Input placeholder="Username" />
           </Form.Item>
           <Form.Item
-            label="Password"
             name="password"
             rules={[
               {
@@ -40,10 +39,10 @@ export default function LoginForm({ onFinish }: IProps) {
               },
             ]}
           >
-            <Input.Password />
+            <Input.Password placeholder="Password" />
           </Form.Item>
           <Button htmlType="submit" type="primary" block>
-            Submit
+            Sign in
           </Button>
         </Form>
       </FormContent>
@@ -60,6 +59,7 @@ const FormContainer = styled.div`
   right: 0;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 const FormContent = styled(Card)`
