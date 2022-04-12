@@ -1,6 +1,5 @@
-import axios, { AxiosError } from "axios";
-import { setUserInfo } from "containers/Auth/authSlice";
-
+import axios from "axios";
+import { logout } from "containers/Auth/authSlice";
 import { store } from "store";
 
 const service = axios.create({
@@ -39,7 +38,7 @@ service.interceptors.response.use(
   function (error) {
     if (error.response) {
       if (error.response?.status === 401) {
-        store.dispatch(setUserInfo(null));
+        store.dispatch(logout());
       }
 
       if (!isProd) {

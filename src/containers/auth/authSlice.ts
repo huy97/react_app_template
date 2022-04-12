@@ -1,5 +1,5 @@
 import { RootState } from "../../store/index";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 
@@ -27,6 +27,7 @@ export const authSlice = createSlice({
   },
 });
 
+export const logout = createAction("auth/logout");
 export const { setUserInfo } = authSlice.actions;
 
 export const selectUserSelector = (state: RootState) => state?.auth?.user;
