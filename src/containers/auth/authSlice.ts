@@ -1,12 +1,10 @@
 import { RootState } from "../../store/index";
 import { createAction, createSlice } from "@reduxjs/toolkit";
 
-import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-
 interface UserData {
   id: string;
   username: string;
-  attributes: CognitoUserAttribute;
+  attributes: any;
   accessToken: string;
   idToken: string;
   refreshToken: string;
