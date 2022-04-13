@@ -1,16 +1,19 @@
+import { notification } from "antd";
 import { Auth } from "aws-amplify";
 import LoginForm from "components/Auth/LoginForm";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "./authSlice";
 
 function Login() {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async ({ username, password }: any) => {
     try {
+      setLoading(true);
       const result = await Auth.signIn(username, password);
 
       dispatch(
@@ -25,10 +28,17 @@ function Login() {
       );
 
       navigate("/");
-    } catch (error) {}
+    } catch (error: any) {
+      notification.error({
+        message: "Error!",
+        description: error?.message,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return <LoginForm onFinish={handleLogin} />;
+  return <LoginForm loading={loading} onFinish={handleLogin} />;
 }
 
 export default Login;

@@ -3,10 +3,11 @@ import React from "react";
 import styled from "styled-components";
 
 interface IProps {
+  loading?: boolean;
   onFinish: any;
 }
 
-export default function LoginForm({ onFinish }: IProps) {
+export default function LoginForm({ onFinish, loading }: IProps) {
   return (
     <FormContainer>
       <h1>B2B Admin Portal</h1>
@@ -24,7 +25,7 @@ export default function LoginForm({ onFinish }: IProps) {
             rules={[
               {
                 required: true,
-                message: "Required field",
+                message: "Please input required field",
               },
             ]}
           >
@@ -35,13 +36,13 @@ export default function LoginForm({ onFinish }: IProps) {
             rules={[
               {
                 required: true,
-                message: "Required field",
+                message: "Please input required field",
               },
             ]}
           >
             <Input.Password placeholder="Password" />
           </Form.Item>
-          <Button htmlType="submit" type="primary" block>
+          <Button loading={loading} htmlType="submit" type="primary" block>
             Sign in
           </Button>
         </Form>
@@ -60,9 +61,14 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  h1 {
+    font-weight: bold;
+  }
 `;
 
 const FormContent = styled(Card)`
+  border: 0;
   max-width: 90%;
-  width: 350px;
+  width: 400px;
 `;

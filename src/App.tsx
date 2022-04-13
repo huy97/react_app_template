@@ -1,3 +1,5 @@
+import { Card } from "antd";
+import Layout from "components/Layout";
 import { logout, selectUserSelector } from "containers/Auth/authSlice";
 import withAuth from "helpers/withAuth";
 import React, { useEffect } from "react";
@@ -15,12 +17,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      Hello World, {user?.username},
-      <button onClick={() => dispatch(logout())}>Logout</button>
-    </div>
+    <Layout>
+      <Card>Hello World</Card>
+    </Layout>
   );
 }
 
 export default withAuth(App);
-

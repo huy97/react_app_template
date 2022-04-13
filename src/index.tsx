@@ -4,6 +4,7 @@ import { Auth } from "aws-amplify";
 import config from "aws-exports";
 import React from "react";
 import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import AppRouter from "routes";
 import { store } from "store";
